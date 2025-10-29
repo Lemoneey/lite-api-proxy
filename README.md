@@ -9,10 +9,10 @@ Its core responsibilities include:
 
 ## Endpoints
 
-| Path                 | Method | Description                                                                                        |
-| :------------------- | :----- | :------------------------------------------------------------------------------------------------- |
-| /api/places/:placeId | GET    | Fetches place information, including the Bounding Box (viewport), required for map initialization. |
-| /api/hotels/rates    | POST   | Fetches hotels pricing data.                                                                       |
+| Path             | Method | Description                                                                                        |
+| :--------------- | :----- | :------------------------------------------------------------------------------------------------- |
+| /places/:placeId | GET    | Fetches place information, including the Bounding Box (viewport), required for map initialization. |
+| /hotels/rates    | POST   | Fetches hotels pricing data.                                                                       |
 
 ## ️ Technologies
 

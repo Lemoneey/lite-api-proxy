@@ -1,18 +1,15 @@
 {
   "name": "lite-api-proxy",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "bun run --watch src/index.ts",
-    "build": "tsdown src/index.ts -d api --dts"
+    "dev": "bun run --watch api/index.ts"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.0",
     "elysia": "latest"
   },
   "devDependencies": {
-    "bun-types": "latest",
-    "tsdown": "^0.15.11",
-    "typescript": "^5.9.3"
-  },
-  "module": "src/index.js"
+    "bun-types": "latest"
+  }
 }
