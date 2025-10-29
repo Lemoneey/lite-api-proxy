@@ -30,48 +30,33 @@ const app = new Elysia()
       return { error: "Internal server error while fetching data." };
     }
   })
-  .post(
-    "/hotels/rates",
-    async ({ body, set }) => {
-      const liteApiUrl = `${LITE_API_BASE_URL}/hotels/rates`;
+  .post("/hotels/rates", async ({ body, set }) => {
+    const liteApiUrl = `${LITE_API_BASE_URL}/hotels/rates`;
 
-      try {
-        const response = await fetch(liteApiUrl, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "X-API-Key": LITE_API_SECRET_KEY,
-          } as HeadersInit,
-          body: JSON.stringify(body),
-        });
+    try {
+      const response = await fetch(liteApiUrl, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "X-API-Key": LITE_API_SECRET_KEY,
+        } as HeadersInit,
+        body: JSON.stringify(body),
+      });
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (!response.ok) {
-          set.status = response.status;
-        }
-
-        return data;
-      } catch (error) {
-        console.error("Proxy error:", error);
-        set.status = 500;
-        return { error: "Internal server error while fetching data." };
+      if (!response.ok) {
+        set.status = response.status;
       }
-    },
-    {
-      body: t.Object({
-        occupancies: t.Array(t.Object({ adults: t.Number() }), {
-          minItems: 1,
-        }),
-        checkin: t.String({ format: "date" }),
-        checkout: t.String({ format: "date" }),
-        placeId: t.String(),
-        currency: t.String(),
-        guestNationality: t.String(),
-      }),
+
+      return data;
+    } catch (error) {
+      console.error("Proxy error:", error);
+      set.status = 500;
+      return { error: "Internal server error while fetching data." };
     }
-  )
+  })
   .compile();
 
 export default app;
